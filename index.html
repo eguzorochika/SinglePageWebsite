@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page Website</title>
+    <!-- Inline CSS -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px;
+            text-align: center;
+        }
+
+        #section1 {
+            background-color: #f1f1f1;
+        }
+
+        #section2 {
+            background-color: #e9e9e9;
+        }
+
+        #section3 {
+            background-color: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#section1">Section 1</a>
+        <a href="#section2">Section 2</a>
+        <a href="#section3">Section 3</a>
+    </nav>
+
+    <!-- Sections -->
+    <main>
+        <section id="section1">
+            <h1>Welcome to Section 1</h1>
+            <p>This is the first section of the single-page website.</p>
+        </section>
+        <section id="section2">
+            <h1>Welcome to Section 2</h1>
+            <p>This is the second section of the single-page website.</p>
+        </section>
+        <section id="section3">
+            <h1>Welcome to Section 3</h1>
+            <p>This is the third section of the single-page website.</p>
+        </section>
+    </main>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // JavaScript for logging navigation clicks
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                console.log(`${link.textContent} clicked`);
+            });
+        });
+    </script>
+</body>
+</html>
