@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLite Database API Test</title>
+</head>
+<body>
+    <h1>SQLite Database API - CRUD Test</h1>
+
+    <h2>Add User</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="email" id="email" placeholder="Enter Email">
+    <button onclick="addUser()">Add User</button>
+
+    <h2>View Users</h2>
+    <button onclick="getUsers()">Load Users</button>
+    <ul id="usersList"></ul>
+
+    <h2>Delete User</h2>
+    <input type="number" id="userId" placeholder="Enter User ID">
+    <button onclick="deleteUser()">Delete User</button>
+
+    <script>
+        const API_URL = "http://localhost:3000";
+
+        async function addUser() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+
+            let response = await fetch(`${API_URL}/add`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email })
+            });
+            let data = await response.json();
+            alert(data.message);
+        }
+
+        async function getUsers() {
+            let response = await fetch(`${API_URL}/users`);
+            let users = await response.json();
+            let usersList = document.getElementById("usersList");
+            usersList.innerHTML = "";
+            users.forEach(user => {
+                let li = document.createElement("li");
+                li.textContent = `ID: ${user.id}, Name: ${user.name}, Email: ${user.email}`;
+                usersList.appendChild(li);
+            });
+        }
+
+        async function deleteUser() {
+            let userId = document.getElementById("userId").value;
+
+            let response = await fetch(`${API_URL}/delete/${userId}`, {
+                method: "DELETE"
+            });
+            let data = await response.json();
+            alert(data.message);
+        }
+    </script>
+</body>
+</html>
